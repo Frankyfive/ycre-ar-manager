@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JPAR AR Manager</title>
+<title>YCRE AR Manager</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -339,17 +339,17 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwlix_5Jn1CYo05
 const DEFAULT_TEMPLATE = {
   subject:   'Outstanding Invoice #{{invoiceNum}} - Balance Due {{balance}}',
   body:      'Hi {{customerName}},\n\nThis is a friendly reminder that Invoice #{{invoiceNum}} has an outstanding balance of {{balance}}{{dueDateLine}}.\n\nItems on this invoice:\n{{itemList}}\n\nPlease don\'t hesitate to reach out with any questions.',
-  signature: 'Thank you,\nJPAR Real Estate'
+  signature: 'Thank you,\nYCRE Real Estate'
 };
 
 function loadTemplate() {
   try {
-    const s = localStorage.getItem('jpar_email_template');
+    const s = localStorage.getItem('YCRE_email_template');
     return s ? JSON.parse(s) : { ...DEFAULT_TEMPLATE };
   } catch(e) { return { ...DEFAULT_TEMPLATE }; }
 }
 function saveTemplate(t) {
-  try { localStorage.setItem('jpar_email_template', JSON.stringify(t)); } catch(e) {}
+  try { localStorage.setItem('YCRE_email_template', JSON.stringify(t)); } catch(e) {}
 }
 
 // ── STATE ─────────────────────────────────────────────────────
@@ -395,7 +395,7 @@ function showPinScreen() {
   document.getElementById('app').innerHTML = `
     <div style="grid-column:1/-1;display:flex;align-items:center;justify-content:center;height:100vh;background:var(--bg)">
       <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:40px;width:340px;text-align:center;box-shadow:var(--shadow)">
-        <div style="font-size:20px;font-weight:700;margin-bottom:6px">JPAR AR Manager</div>
+        <div style="font-size:20px;font-weight:700;margin-bottom:6px">YCRE AR Manager</div>
         <div style="font-size:13px;color:var(--text3);margin-bottom:24px">Enter your access token to continue</div>
         <input id="pinInput" type="password" placeholder="Access token"
           style="width:100%;border:1px solid var(--border2);border-radius:8px;padding:10px 14px;font-size:14px;font-family:var(--font);outline:none;margin-bottom:12px;text-align:center;letter-spacing:0.1em"
@@ -452,7 +452,7 @@ function refreshContent() {
 // ── TOPBAR ────────────────────────────────────────────────────
 function topbar() {
   return `<div class="topbar">
-    <div class="logo"><div class="logo-dot"></div>JPAR</div>
+    <div class="logo"><div class="logo-dot"></div>YCRE</div>
     <div class="topbar-divider"></div>
     <div class="topbar-title">Accounts Receivable</div>
     <div class="topbar-spacer"></div>
